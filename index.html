@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohith, My Valentine 🩷</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Georgia', serif; background:#f7ebe1; scroll-behavior:smooth; }
+
+/* Slides */
+.slide { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px; position:relative; text-align:center; background-size:cover; background-position:center; }
+
+/* Letter/Content Box */
+.letter-box {
+  background: rgba(255,248,244,0.92);
+  backdrop-filter: blur(12px);
+  padding:40px;
+  max-width:700px;
+  border-radius:25px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.15);
+  font-size:18px; line-height:1.8;
+  white-space: pre-line;
+  animation: fadeUp 1.2s ease forwards;
+}
+@keyframes fadeUp { from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
+
+/* Buttons */
+.buttons { margin-top:30px; display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+button {
+  padding:14px 30px;
+  border:none;
+  border-radius:40px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+.yes-btn { background:#ff9ecb; color:white; box-shadow:0 0 20px rgba(255,158,203,0.6);}
+.no-btn { background:#ffc2dd; color:#6a0032; }
+button:hover { transform:scale(1.08); }
+
+/* Celebration overlay */
+.celebration {
+  position:fixed; inset:0;
+  background: radial-gradient(circle at center, #ffd6e8, #f8a5c2);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  color:white;
+  font-size:28px;
+  z-index:9999;
+  overflow:hidden;
+}
+.heart {
+  position:absolute;
+  width:20px; height:20px; background: rgba(255,255,255,0.6); transform:rotate(45deg);
+  animation: floatUp 6s linear infinite;
+}
+.heart::before, .heart::after { content:''; position:absolute; width:20px; height:20px; background:inherit; border-radius:50%; }
+.heart::before { top:-10px; left:0; }
+.heart::after { left:-10px; top:0; }
+@keyframes floatUp { from { transform:translateY(100vh) rotate(45deg); opacity:1;} to {transform:translateY(-10vh) rotate(45deg); opacity:0;} }
+
+/* Intro Page */
+#intro { background: linear-gradient(135deg,#f3d7c1,#f9c3d1); display:flex; align-items:center; justify-content:center; flex-direction:column; }
+#intro button { margin-top:20px; }
+</style>
+</head>
+<body>
+
+<!-- FIRST OPENING PAGE -->
+<section id="intro">
+  <h1>Hey, Rohith... 🩷</h1>
+  <h3>My cutiee pookie wookiee Handsome boy</h3>
+  <button onclick="goToSlides()">Enter My Heart 💗</button>
+</section>
+
+<!-- CANVA SLIDES (IMAGE BASED) -->
+<section class="slide" style="background:url('canva_slide1.jpg') center/cover no-repeat;"></section>
+<section class="slide" style="background:url('canva_slide2.jpg') center/cover no-repeat;"></section>
+<section class="slide" style="background:url('canva_slide3.jpg') center/cover no-repeat;"></section>
+
+<!-- FINAL VALENTINE SLIDE -->
+<section class="slide" style="background: linear-gradient(135deg,#f3d7c1,#f9c3d1);">
+  <div class="letter-box">
+    February 14, 2026.
+
+    Will you be my Valentine?👉👈
+
+    Not just this February.
+    But every February 14.
+    For the rest of my lifetime.
+
+    <div class="buttons">
+      <button class="yes-btn" onclick="celebrate()">Yes!!! 🩷</button>
+      <button class="no-btn">Thought you had another option!!! 😼</button>
+    </div>
+  </div>
+</section>
+
+<!-- CELEBRATION OVERLAY -->
+<div class="celebration" id="celebration">
+  <div id="celebrateText">You just made me the happiest girl.</div>
+</div>
+
+<script>
+// Scroll to first slide after clicking intro
+function goToSlides() {
+  window.scrollTo({ top: window.innerHeight, behavior:'smooth' });
+}
+
+// Celebration animation
+function celebrate() {
+  const c = document.getElementById("celebration");
+  c.style.display = "flex";
+
+  for (let i=0; i<120; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (4 + Math.random()*3) + "s";
+    c.appendChild(heart);
+  }
+
+  setTimeout(() => {
+    document.getElementById("celebrateText").innerHTML = "Forever starts now.";
+  }, 2000);
+}
+</script>
+
+</body>
+</html>
